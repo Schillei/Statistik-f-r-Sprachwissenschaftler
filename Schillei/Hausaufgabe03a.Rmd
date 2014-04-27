@@ -1,4 +1,3 @@
-
 % Hausaufgabe 01
 % Phillip Alday <phillip.alday@staff.uni-marburg.de>
 % 2014-04-23
