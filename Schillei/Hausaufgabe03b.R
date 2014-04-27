@@ -1,7 +1,7 @@
-# Hausaufgabe 03
-# Phillip Alday <phillip.alday@staff.uni-marburg.de>
-# 2014-04-23
-# Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz.
+# Hausaufgabe 03b
+# Isabel Schiller <Schillei@students.uni-marburg.de>
+# 2014-04-27
+# Diese Datei darf nur Prüfungszwecken dienen.
 
 # Sie sollten die Datei auch in Ihren Ordner kopieren und einen Commit machen, 
 # bevor Sie die Kopie weiter anpassen! Vergessen Sie dabei nicht, Namen, Datum
