@@ -116,7 +116,7 @@ print(modus)
 # Verständisfrage: gibt es immer nur *einen* Modalwert? 
 # Wenn nicht, ist der Code oben korrekt? Warum?
 
-# Es kann mehr als einen Modalwert geben, wenn es mehrere Variablen gibt, die den höchsten Wert tragen. In diesem Fall wäre die Formel nicht korrekt, weil nur das erste Element in der sortierten Reihe ausgewählt wird. Wäre das zweite Element beispielsweise genauso häufig vertreten, würde es durch diese Formel nicht erfasst werden
+# Es kann mehr als einen Modalwert geben, wenn es mehrere Elemente gibt, die den höchsten Wert tragen. In diesem Fall wäre die Formel nicht korrekt, weil nur das erste Element in der sortierten Reihe ausgewählt wird. Wäre das zweite Element beispielsweise genauso häufig vertreten, würde es durch diese Formel nicht erfasst werden
 
 # Als Abscheid ein Beispiel mit der Darstellung Frequenzdaten mit Säulendiagramm
 # bzw. Histogramm
