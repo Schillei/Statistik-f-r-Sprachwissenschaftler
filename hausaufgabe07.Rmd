@@ -128,7 +128,7 @@ Jetzt können wir die absoluten Häufigkeiten auch plotten:
 
 ```{r}
 library(sn)
-qplot(x=1:15,y=Anzahl),geom="line",xlab="Notenpunkte",ylab="Anzahl")
+qplot(x=1:15,y=abs(noten.dist$Anzahl),geom="line",xlab="Notenpunkte",ylab="P")
 ```
 Jetzt können Sie ein paar Fragen über die Verteilung konkret beantworten:
 
