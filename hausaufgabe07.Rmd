@@ -90,16 +90,17 @@ for(s in c(3,4,5) ){
 }
 ```
 
-Wie steht die Anzahl guter Noten in Beziehung zur Anzahl schlechter Noten aus? 
+Wie steht die Anzahl guter Noten in Beziehung zur Anzahl schlechter Noten? 
 
-antwort_hier
+Die Anzahl schlechter Noten ist - unabhängig von der jeweiligen Standardabweichung - höher als die Anzahl ausgezeichneter Noten. 
 
 Warum?
 
-antwort_hier
+Es besteht ein ungleiches Verhältnis von 4:3. Die untersten vier Werten der Verteilung bedeuten, man fällt durch; die obersten drei Werte bedeuten, man hat eine ausgezeichnete Note. Da die Dichte auf einem Mittelwert von 8 beruht, fallen entsprechend etwas mehr Leute durch.
+
 
 ## Kurtosis und Schiefe
-Kurtosis (im Deutschen auch *Wölbung*) ist ein Maß dafür, wie spitzig eine Verteilung ist. Die Normalverteilung wird nie zu extrem spitzig -- der Gipfel bleibt immer schön rund, obwohl er manchmal eng wird. Andere Verteilungen (z.B. die Laplace-Verteilnung ) haben Gipfel, die nicht rund sind.   
+Kurtosis (im Deutschen auch *Wölbung*) ist ein Maß dafür, wie spitzig eine Verteilung ist. Die Normalverteilung wird nie zu extrem spitzig -- der Gipfel bleibt immer schön rund, obwohl er manchmal eng wird. Andere Verteilungen (z.B. die Laplace-Verteilung ) haben Gipfel, die nicht rund sind.   
 
 Schiefe (*skewness*) beschriebt die (A)Symmetrie einer Verteilung. Eine Verteilung ist *linksschief*, wenn die linke Seite "breiter" ist, d.h., wenn sich der "Gipfel" auf der rechten Seite befindet.  Eine Verteilung ist *rechtsschief*, wenn die rechte Seite "breiter" ist, d.h., wenn sich der "Gipfel" auf der linken Seite befindet 
 
@@ -107,7 +108,7 @@ Die Richtung der Schiefe ist insoweit die Richtung, wo der Schwanz dicker bzw. g
 
 Die Verteilung von Noten ist oft schief mit mehr guten Noten. Ist die Verteilung rechts- oder linksschief?
 
-antwort_hier
+rechtsschief
 
 Vielleicht hilft folgende Grafik mit der Visuelliserung:
 ```{r}
@@ -137,15 +138,15 @@ Jetzt können Sie ein paar Fragen über die Verteilung konkret beantworten:
 
 2. Wie viele Studenten bekommen zumindest 10 NP?
 
-    `code_hier` Studenten bekommen zumindest 10 Notenpunkte.
+    `r pnorm(10,mean=mu,sd=3, lower.tail = FALSE) * n` Studenten bekommen mindestens 10 Notenpunkte.
 
 3. Wie viele Studenten bekommen weniger als 10 NP?
 
-    `code_hier` Studenten bekommen weniger als 10 Notenpunkte.
+    `r pnorm(10,mean=mu,sd=3) * n` Studenten bekommen weniger als 10 Notenpunkte.
 
 4. Wie viele Studenten bekommen weniger als 8 NP?
 
-    `code_hier` Studenten bekommen weniger als 8 Notenpunkte.
+    `r pnorm(8,mean=mu,sd=3) * n` Studenten bekommen weniger als 8 Notenpunkten.
 
 
 (Die Einrückung mit 4 Leerschlägen ist die Syntax für mehrere Absatz pro Punkt auf der Liste.)
@@ -155,9 +156,9 @@ Manchmal will man in die andere Richtung gehen -- z.B. um die Frage beantworten 
 
 Um überdurchscnittlich zu sein, muss man mehr als `r qnorm(0.5,mean=mu,sd=3)` Notenpunkte bekommen. 
 
-Nicht so überraschend, dass "überdurschnittlich" auch "besser als den Durchschnitt" bekommen! Wie sieht es aus, wenn besser als 99% der anderen abschließen möchten?
+Nicht so überraschend, dass "überdurschnittlich" auch "besser als den Durchschnitt" bekommen! Wie sieht es aus, wenn man besser als 99% der anderen abschließen möchten?
 
-Um in dem besten 1% abzuschließen, muss man zumindest `code_hier` Notenpunkte bekommen.
+Um in dem besten 1% abzuschließen, muss man zumindest `r qnorm(0.99,mean=mu,sd=3)` Notenpunkte bekommen.
 
 ## z-Transformation
 Bei der Überprüfung der Lehrqualität scheint es der Verwaltung, dass ein gewisser Dozent andere Noten als andere Dozenten vergibt. Es wird entschieden, dass der Notenspiegel bei den Teilnehmern in einem von seinen Kursen getestet werden, um zu schauen, ob er von signifikant von der idealisierten Notenverteilung ($\mu=8,\sigma=3$) unterscheidet. Um zu zeigen, dass Gott $\alpha=0.06$ so viel liebt wie $\alpha=0.05$ `r citep("10.1037/0003-066X.44.10.1276")`, setzt die Verwaltung das Signikanzniveau auf 0.06. 
