@@ -127,8 +127,7 @@ noten.dist
 Jetzt können wir die absoluten Häufigkeiten auch plotten:
 
 ```{r}
-library(sn)
-qplot(x=1:15,y=abs(noten.dist$Anzahl),geom="line",xlab="Notenpunkte",ylab="P")
+ggplot(data=noten.dist,aes(x=Notenpunkte,y=Anzahl,color=Standardabweichung)) + geom_line() + scale_x_continuous(limits=c(0,16))
 ```
 Jetzt können Sie ein paar Fragen über die Verteilung konkret beantworten:
 
