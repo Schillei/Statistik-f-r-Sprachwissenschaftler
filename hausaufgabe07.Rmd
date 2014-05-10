@@ -96,7 +96,7 @@ Die Anzahl schlechter Noten ist - unabhängig von der jeweiligen Standardabweich
 
 Warum?
 
-Es besteht ein ungleiches Verhältnis von 4:3. Die untersten vier Werten der Verteilung bedeuten, man fällt durch; die obersten drei Werte bedeuten, man hat eine ausgezeichnete Note. Da die Dichte auf einem Mittelwert von 8 beruht, fallen entsprechend etwas mehr Leute durch.
+Es besteht ein ungleiches Verhältnis von 4:3. Die untersten vier Werten der Verteilung bedeuten, man fällt durch; die obersten drei Werte bedeuten, man hat eine ausgezeichnete Note.
 
 
 ## Kurtosis und Schiefe
