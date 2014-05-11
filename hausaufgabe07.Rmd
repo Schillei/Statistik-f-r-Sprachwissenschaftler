@@ -108,7 +108,7 @@ Die Richtung der Schiefe ist insoweit die Richtung, wo der Schwanz dicker bzw. g
 
 Die Verteilung von Noten ist oft schief mit mehr guten Noten. Ist die Verteilung rechts- oder linksschief?
 
-rechtsschief
+linktsschief, da die linke Seite breiter ist.
 
 Vielleicht hilft folgende Grafik mit der Visuelliserung:
 ```{r}
