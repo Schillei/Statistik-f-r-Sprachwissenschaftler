@@ -83,16 +83,17 @@ print(G2_RT)
 
 # Als nächstes folgt der F-Test. G1:
 var.test(G1_RT, G2_RT)
+ 
+# Sind die Varianzen homogen? Vergessen Sie nicht, dass die Nullhypothese beim
+# F-Test "Varianzen Ungleich" ist.
 
 # Da p < 0.05 wird die Nullhypothese beibehalten. Folglich sind die 
 # Varianzen der beiden Gruppen ungleich verteilt.
 
-# 
-# Sind die Varianzen homogen? Vergessen Sie nicht, dass die Nullhypothese beim
-# F-Test "Varianzen Ungleich" ist.
-
 # Berechenen Sie den Levene Test:
-#print(CODE_HIER)
+y <- c(G1_RT, G2_RT)
+group <- as.factor(c(rep("G1_RT", length(G1_RT)), rep("G2_RT", length(G2_RT))))
+leveneTest (y,group)
 
 # Sind die Varianzen homogen? Vergessen Sie nicht, dass die Nullhypothese beim
 # Levene Test "Varianzen Gleich" ist.
