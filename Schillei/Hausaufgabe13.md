@@ -97,7 +97,7 @@ print(xtable(priming.by.subject), type = "html", include.rownames = FALSE)
 ```
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Tue May 27 21:56:09 2014 -->
+<!-- Wed May 28 17:21:20 2014 -->
 <TABLE border=1>
 <TR> <TH> cond </TH> <TH> subj </TH> <TH> RT </TH>  </TR>
   <TR> <TD> DD </TD> <TD> 1 </TD> <TD align="right"> 569.75 </TD> </TR>
@@ -233,7 +233,7 @@ print(xtable(priming.by.subject.wide1), type = "html", include.rownames = FALSE)
 ```
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Tue May 27 21:56:09 2014 -->
+<!-- Wed May 28 17:21:20 2014 -->
 <TABLE border=1>
 <TR> <TH> subj </TH> <TH> DD </TH> <TH> DE </TH> <TH> ED </TH> <TH> EE </TH>  </TR>
   <TR> <TD> 1 </TD> <TD align="right"> 569.75 </TD> <TD align="right"> 655.15 </TD> <TD align="right"> 592.00 </TD> <TD align="right"> 587.70 </TD> </TR>
@@ -277,7 +277,7 @@ print(xtable(priming.by.subject.wide2), type = "html", include.rownames = FALSE)
 ```
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Tue May 27 21:56:09 2014 -->
+<!-- Wed May 28 17:21:20 2014 -->
 <TABLE border=1>
 <TR> <TH> cond </TH> <TH> 1 </TH> <TH> 2 </TH> <TH> 3 </TH> <TH> 4 </TH> <TH> 5 </TH> <TH> 6 </TH> <TH> 7 </TH> <TH> 8 </TH> <TH> 9 </TH> <TH> 10 </TH> <TH> 11 </TH> <TH> 12 </TH> <TH> 13 </TH> <TH> 14 </TH> <TH> 15 </TH> <TH> 16 </TH> <TH> 17 </TH> <TH> 18 </TH> <TH> 19 </TH> <TH> 20 </TH> <TH> 21 </TH> <TH> 22 </TH> <TH> 23 </TH> <TH> 24 </TH> <TH> 25 </TH> <TH> 26 </TH> <TH> 27 </TH> <TH> 28 </TH> <TH> 29 </TH> <TH> 30 </TH>  </TR>
   <TR> <TD> DD </TD> <TD align="right"> 569.75 </TD> <TD align="right"> 512.95 </TD> <TD align="right"> 503.15 </TD> <TD align="right"> 616.45 </TD> <TD align="right"> 698.45 </TD> <TD align="right"> 562.75 </TD> <TD align="right"> 584.60 </TD> <TD align="right"> 546.15 </TD> <TD align="right"> 457.35 </TD> <TD align="right"> 496.60 </TD> <TD align="right"> 496.35 </TD> <TD align="right"> 556.10 </TD> <TD align="right"> 491.45 </TD> <TD align="right"> 556.90 </TD> <TD align="right"> 417.20 </TD> <TD align="right"> 526.90 </TD> <TD align="right"> 502.75 </TD> <TD align="right"> 470.75 </TD> <TD align="right"> 626.45 </TD> <TD align="right"> 815.25 </TD> <TD align="right"> 673.60 </TD> <TD align="right"> 534.50 </TD> <TD align="right"> 532.80 </TD> <TD align="right"> 513.20 </TD> <TD align="right"> 491.65 </TD> <TD align="right"> 415.60 </TD> <TD align="right"> 500.70 </TD> <TD align="right"> 494.65 </TD> <TD align="right"> 507.90 </TD> <TD align="right"> 512.10 </TD> </TR>
@@ -327,19 +327,43 @@ Bei "Item" berechnen wir die Mittelwerte aller Trials innerhalb eines Items, d.h
 
 
 ```r
-# priming.by.item <- aggregate(RT ~ cond * item, data=priming, FUN = mean )
+priming.by.item <- aggregate(RT ~ cond * item, data = priming, FUN = mean)
 ```
 
 
 Wir wollen auch hier die Daten tabellerisch darstellen. Erstellen Sie eine Tabelle in Wide-Format für die Mittelwerte by Item.
 
-CODE_BLOCK_HIER
+
+```r
+priming.by.item.wide <- dcast(priming.by.item, cond ~ item, value.var = "RT")
+print(xtable(priming.by.item.wide), type = "html", include.rownames = FALSE)
+```
+
+<!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
+<!-- Wed May 28 17:21:32 2014 -->
+<TABLE border=1>
+<TR> <TH> cond </TH> <TH> 1 </TH> <TH> 2 </TH> <TH> 3 </TH> <TH> 4 </TH> <TH> 5 </TH> <TH> 6 </TH> <TH> 7 </TH> <TH> 8 </TH> <TH> 9 </TH> <TH> 10 </TH> <TH> 11 </TH> <TH> 12 </TH> <TH> 13 </TH> <TH> 14 </TH> <TH> 15 </TH> <TH> 16 </TH> <TH> 17 </TH> <TH> 18 </TH> <TH> 19 </TH> <TH> 20 </TH>  </TR>
+  <TR> <TD> DD </TD> <TD align="right"> 521.33 </TD> <TD align="right"> 538.47 </TD> <TD align="right"> 516.27 </TD> <TD align="right"> 479.60 </TD> <TD align="right"> 538.43 </TD> <TD align="right"> 543.53 </TD> <TD align="right"> 592.90 </TD> <TD align="right"> 579.70 </TD> <TD align="right"> 537.37 </TD> <TD align="right"> 510.43 </TD> <TD align="right"> 536.23 </TD> <TD align="right"> 495.17 </TD> <TD align="right"> 609.37 </TD> <TD align="right"> 527.83 </TD> <TD align="right"> 516.53 </TD> <TD align="right"> 519.73 </TD> <TD align="right"> 547.93 </TD> <TD align="right"> 508.90 </TD> <TD align="right"> 643.90 </TD> <TD align="right"> 526.37 </TD> </TR>
+  <TR> <TD> DE </TD> <TD align="right"> 620.40 </TD> <TD align="right"> 606.87 </TD> <TD align="right"> 521.73 </TD> <TD align="right"> 559.33 </TD> <TD align="right"> 548.83 </TD> <TD align="right"> 651.40 </TD> <TD align="right"> 576.97 </TD> <TD align="right"> 628.93 </TD> <TD align="right"> 663.47 </TD> <TD align="right"> 541.37 </TD> <TD align="right"> 590.47 </TD> <TD align="right"> 534.77 </TD> <TD align="right"> 585.43 </TD> <TD align="right"> 684.73 </TD> <TD align="right"> 593.93 </TD> <TD align="right"> 673.70 </TD> <TD align="right"> 600.40 </TD> <TD align="right"> 593.23 </TD> <TD align="right"> 731.47 </TD> <TD align="right"> 604.73 </TD> </TR>
+  <TR> <TD> ED </TD> <TD align="right"> 551.40 </TD> <TD align="right"> 563.03 </TD> <TD align="right"> 572.77 </TD> <TD align="right"> 513.80 </TD> <TD align="right"> 567.37 </TD> <TD align="right"> 612.50 </TD> <TD align="right"> 611.87 </TD> <TD align="right"> 566.93 </TD> <TD align="right"> 531.30 </TD> <TD align="right"> 537.00 </TD> <TD align="right"> 523.20 </TD> <TD align="right"> 511.33 </TD> <TD align="right"> 618.37 </TD> <TD align="right"> 549.20 </TD> <TD align="right"> 511.27 </TD> <TD align="right"> 524.10 </TD> <TD align="right"> 567.90 </TD> <TD align="right"> 558.57 </TD> <TD align="right"> 597.90 </TD> <TD align="right"> 544.33 </TD> </TR>
+  <TR> <TD> EE </TD> <TD align="right"> 602.17 </TD> <TD align="right"> 593.37 </TD> <TD align="right"> 505.57 </TD> <TD align="right"> 496.00 </TD> <TD align="right"> 587.40 </TD> <TD align="right"> 643.63 </TD> <TD align="right"> 551.90 </TD> <TD align="right"> 637.20 </TD> <TD align="right"> 528.77 </TD> <TD align="right"> 546.43 </TD> <TD align="right"> 543.93 </TD> <TD align="right"> 576.03 </TD> <TD align="right"> 569.63 </TD> <TD align="right"> 620.07 </TD> <TD align="right"> 556.70 </TD> <TD align="right"> 612.93 </TD> <TD align="right"> 606.13 </TD> <TD align="right"> 558.97 </TD> <TD align="right"> 675.93 </TD> <TD align="right"> 522.93 </TD> </TR>
+   </TABLE>
+
 
 Und *eine* passende Grafik für die Daten by Item sollten wir auch generieren:
 
-CODE_BLOCK_HIER
+
+```r
+ggplot(data = priming.by.item) + geom_violin(aes(x = cond, y = RT, color = cond, 
+    fill = cond), alpha = 0.5)
+```
+
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png) 
+
 
 Sehen die Daten by Subject und by Item gleich aus? Wie sehen sie im Vergleich zu den Single-Trial-Daten aus?
+
+Nein, besonders hinsichtlich der Bedingungen DD und ED erkennt man unterschiede. Die Steurung für diese Bedingungen scheinen by subject größer zu sein als by item. Im Vergleich zu den Single-Trial Daten, sehen die Varianzen der by-item und by-subject Daten über die Bedingungen hinweg heterogener aus.
 
 # Subject- und Item-Analysen
 
@@ -350,7 +374,7 @@ ggplot(data = priming) + geom_density(aes(x = RT, color = cond, fill = cond),
     alpha = 0.1) + facet_wrap(~subj)
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13.png) 
+![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15.png) 
 
 
 
@@ -373,7 +397,7 @@ print(xtable(priming.f1$ANOVA), type = "html", include.rownames = FALSE)
 ```
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Tue May 27 21:57:06 2014 -->
+<!-- Wed May 28 17:22:04 2014 -->
 <TABLE border=1>
 <TR> <TH> Effect </TH> <TH> DFn </TH> <TH> DFd </TH> <TH> SSn </TH> <TH> SSd </TH> <TH> F </TH> <TH> p </TH> <TH> p&lt;.05 </TH> <TH> ges </TH>  </TR>
   <TR> <TD> (Intercept) </TD> <TD align="right"> 1.00 </TD> <TD align="right"> 29.00 </TD> <TD align="right"> 38940134.70 </TD> <TD align="right"> 704326.36 </TD> <TD align="right"> 1603.32 </TD> <TD align="right"> 0.00 </TD> <TD> * </TD> <TD align="right"> 0.98 </TD> </TR>
@@ -398,7 +422,7 @@ print(xtable(priming.f1$ANOVA, display = c("s", "s", "d", "d", "f", "f", "f",
 ```
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Tue May 27 21:57:07 2014 -->
+<!-- Wed May 28 17:22:04 2014 -->
 <TABLE border=1>
 <TR> <TH> Effect </TH> <TH> DFn </TH> <TH> DFd </TH> <TH> SSn </TH> <TH> SSd </TH> <TH> F </TH> <TH> p </TH> <TH> p&lt;.05 </TH> <TH> ges </TH>  </TR>
   <TR> <TD> (Intercept) </TD> <TD align="right"> 1 </TD> <TD align="right"> 29 </TD> <TD align="right"> 38940134.70 </TD> <TD align="right"> 704326.36 </TD> <TD align="right"> 1603.32 </TD> <TD align="right"> 0.0000000000000000000000000062 </TD> <TD> * </TD> <TD align="right"> 0.98 </TD> </TR>
@@ -420,21 +444,49 @@ ggplot(data = priming) + geom_density(aes(x = RT, color = cond, fill = cond),
     alpha = 0.1) + facet_wrap(~item)
 ```
 
-![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17.png) 
+![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19.png) 
 
 Führen Sie die entsprechende Item-Analyse aus.
 
-CODE_BLOCK_HIER
+
+```r
+priming.f2 <- ezANOVA(priming, dv = .(RT), wid = .(item), within = .(prime, 
+    target), detailed = TRUE)
+```
+
+```
+## Warning: Collapsing data to cell means. *IF* the requested effects are a
+## subset of the full design, you must use the "within_full" argument, else
+## results may be inaccurate.
+```
+
+
+### ANOVA
+
+```r
+print(xtable(priming.f2$ANOVA), type = "html", include.rownames = FALSE)
+```
+
+<!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
+<!-- Wed May 28 17:22:26 2014 -->
+<TABLE border=1>
+<TR> <TH> Effect </TH> <TH> DFn </TH> <TH> DFd </TH> <TH> SSn </TH> <TH> SSd </TH> <TH> F </TH> <TH> p </TH> <TH> p&lt;.05 </TH> <TH> ges </TH>  </TR>
+  <TR> <TD> (Intercept) </TD> <TD align="right"> 1.00 </TD> <TD align="right"> 19.00 </TD> <TD align="right"> 25960089.80 </TD> <TD align="right"> 92393.37 </TD> <TD align="right"> 5338.50 </TD> <TD align="right"> 0.00 </TD> <TD> * </TD> <TD align="right"> 0.99 </TD> </TR>
+  <TR> <TD> prime </TD> <TD align="right"> 1.00 </TD> <TD align="right"> 19.00 </TD> <TD align="right"> 674.73 </TD> <TD align="right"> 14562.66 </TD> <TD align="right"> 0.88 </TD> <TD align="right"> 0.36 </TD> <TD>  </TD> <TD align="right"> 0.00 </TD> </TR>
+  <TR> <TD> target </TD> <TD align="right"> 1.00 </TD> <TD align="right"> 19.00 </TD> <TD align="right"> 37140.71 </TD> <TD align="right"> 35559.97 </TD> <TD align="right"> 19.84 </TD> <TD align="right"> 0.00 </TD> <TD> * </TD> <TD align="right"> 0.20 </TD> </TR>
+  <TR> <TD> prime:target </TD> <TD align="right"> 1.00 </TD> <TD align="right"> 19.00 </TD> <TD align="right"> 10593.80 </TD> <TD align="right"> 8473.95 </TD> <TD align="right"> 23.75 </TD> <TD align="right"> 0.00 </TD> <TD> * </TD> <TD align="right"> 0.07 </TD> </TR>
+   </TABLE>
+
 
 # Interaktionen 
-In der Analyse by Subjects haben wir eine Interaktion zwsichen `prime` und `target`. Solche Interaktionen berichtet man in der Regel nur, wenn sie auch in der Auflösung zu finden ist. Hier heißt das, dass wir die Daten innerhalb der verschiedenen Stufen eines Faktors anschauen und weitere ANOVAs berechnen, um zu schauen, ob der verbleibende Faktor (oder die verbleibenden Faktoren bei mehrfaktoriellen ANOVA) noch signifikant wird. Wenn er in keiner Stufe des anderen Faktors signifikant wird, betrachten wir die Interaktion als nicht bedeutsam.
+In der Analyse by Subjects haben wir eine Interaktion zwischen `prime` und `target`. Solche Interaktionen berichtet man in der Regel nur, wenn sie auch in der Auflösung zu finden ist. Hier heißt das, dass wir die Daten innerhalb der verschiedenen Stufen eines Faktors anschauen und weitere ANOVAs berechnen, um zu schauen, ob der verbleibende Faktor (oder die verbleibenden Faktoren bei mehrfaktoriellen ANOVA) noch signifikant wird. Wenn er in keiner Stufe des anderen Faktors signifikant wird, betrachten wir die Interaktion als nicht bedeutsam.
 
 Es gibt keine statistische Basis, nach der wir entscheiden können, welchen Faktor aufzulösen. Die Entscheidung müssen wir *a priori* anhand unserer Hypothesen machen. Wenn wir in beide Richtungen auflösen und schauen würden, welche Richtung die besseren Ergebnisse ergibt, sündigen wir wieder mit multiplem Testen!
 
 Bei der Studie hier haben wir als Fragestellung für das Gesamtexperiment, ob Priming gleich gut sprachübergreifend als sprachintern funktioniert. Wenn wir überlegen, wie wir die Interaktion auflösen möchten, können wir uns weitere (Unter)Fragestellungen vorstellen:
 
-1. *Hat die Sprache des Primes eine Auswirkung auf die Stärke des Priming-Effekts?* In diesem Fall wollen wir dann `target` festhalen bzw. auflösen, damit wir `prime` noch variieren können, d.h. die Wirkung von `prime` unter gewissen Umständen (Zielsprache) untersuchen.
-2. *Hat die Sprache des Targets eine Auswirkung auf die Stärke des Priming-Effekts?*  In diesem Fall wollen wir dann `prime` festhalen bzw. auflösen, damit wir `target` noch variieren können, d.h. die Wirkung von `target` unter gewissen Umständen (Priming-Sprache) untersuchen.
+1. *Hat die Sprache des Primes eine Auswirkung auf die Stärke des Priming-Effekts?* In diesem Fall wollen wir dann `target` festhalten bzw. auflösen, damit wir `prime` noch variieren können, d.h. die Wirkung von `prime` unter gewissen Umständen (Zielsprache) untersuchen.
+2. *Hat die Sprache des Targets eine Auswirkung auf die Stärke des Priming-Effekts?*  In diesem Fall wollen wir dann `prime` festhalten bzw. auflösen, damit wir `target` noch variieren können, d.h. die Wirkung von `target` unter gewissen Umständen (Priming-Sprache) untersuchen.
 
 Hier möchte ich wissen, ob Primes in der Fremdsprache die gleiche Wirkung haben wie Primes in der Muttersprache. Das heißt, ich möchte `prime` variieren, ich muss also `target` stufenweise festhalten bzw. auflösen.
 
@@ -445,7 +497,7 @@ ggplot(data = priming) + geom_boxplot(aes(x = prime, y = RT), alpha = 0.45) +
     facet_wrap(~target) + ggtitle("Priming aufgelöst nach target -- Single-Trial-Daten")
 ```
 
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18.png) 
+![plot of chunk unnamed-chunk-22](figure/unnamed-chunk-22.png) 
 
 
 
@@ -456,7 +508,7 @@ ggplot(data = priming.by.subject) + geom_boxplot(aes(x = prime, y = RT), alpha =
     facet_wrap(~target) + ggtitle("Priming aufgelöst nach target -- Mean-by-Subject-Daten")
 ```
 
-![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19.png) 
+![plot of chunk unnamed-chunk-23](figure/unnamed-chunk-23.png) 
 
 
 Um die Auflösung zu machen, nutzen wir `subset()`. Dabei müssen wir auch beachten, dass `target` nicht mehr als Faktor in der ANOVA auftaucht, denn wir berechnen die ANOVA innerhalb der Stufen von `target`!
@@ -481,7 +533,7 @@ print(xtable(priming.f1.englisch.target$ANOVA, display = c("s", "s", "d", "d",
 ```
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Tue May 27 21:57:46 2014 -->
+<!-- Wed May 28 17:22:31 2014 -->
 <TABLE border=1>
 <TR> <TH> Effect </TH> <TH> DFn </TH> <TH> DFd </TH> <TH> SSn </TH> <TH> SSd </TH> <TH> F </TH> <TH> p </TH> <TH> p&lt;.05 </TH> <TH> ges </TH>  </TR>
   <TR> <TD> (Intercept) </TD> <TD align="right"> 1 </TD> <TD align="right"> 29 </TD> <TD align="right"> 20970809.92 </TD> <TD align="right"> 405363.34 </TD> <TD align="right"> 1500.27 </TD> <TD align="right"> 0.000000000000000000000000016 </TD> <TD> * </TD> <TD align="right"> 0.98 </TD> </TR>
@@ -493,7 +545,32 @@ print(xtable(priming.f1.englisch.target$ANOVA, display = c("s", "s", "d", "d",
 # Deutsches Target
 Führen Sie die entsprechende Analyse für deutsches Target aus.
 
-CODE_BLOCK_HIER
+
+```r
+priming.f1.deutsch.target <- ezANOVA(subset(priming, target == "D"), dv = .(RT), 
+    wid = .(subj), within = .(prime), detailed = TRUE)
+```
+
+```
+## Warning: Collapsing data to cell means. *IF* the requested effects are a
+## subset of the full design, you must use the "within_full" argument, else
+## results may be inaccurate.
+```
+
+```r
+print(xtable(priming.f1.deutsch.target$ANOVA, display = c("s", "s", "d", "d", 
+    "f", "f", "f", "fg", "s", "g"), digits = c(0, 0, 0, 0, 2, 2, 2, 2, 0, 2)), 
+    type = "html", include.rownames = FALSE)
+```
+
+<!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
+<!-- Wed May 28 17:22:32 2014 -->
+<TABLE border=1>
+<TR> <TH> Effect </TH> <TH> DFn </TH> <TH> DFd </TH> <TH> SSn </TH> <TH> SSd </TH> <TH> F </TH> <TH> p </TH> <TH> p&lt;.05 </TH> <TH> ges </TH>  </TR>
+  <TR> <TD> (Intercept) </TD> <TD align="right"> 1 </TD> <TD align="right"> 29 </TD> <TD align="right"> 18025035.84 </TD> <TD align="right"> 345779.58 </TD> <TD align="right"> 1511.73 </TD> <TD align="right"> 0.000000000000000000000000014 </TD> <TD> * </TD> <TD align="right"> 0.98 </TD> </TR>
+  <TR> <TD> prime </TD> <TD align="right"> 1 </TD> <TD align="right"> 29 </TD> <TD align="right"> 4441.04 </TD> <TD align="right"> 16586.27 </TD> <TD align="right"> 7.76 </TD> <TD align="right"> 0.0093 </TD> <TD> * </TD> <TD align="right"> 0.012 </TD> </TR>
+   </TABLE>
+
 
 
 # Lizenz
