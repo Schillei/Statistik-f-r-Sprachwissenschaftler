@@ -1,6 +1,6 @@
 % Hausaufgabe 13
 % Isabel Schiller <Schillei@students.uni-marburg.de>
-% 2014-05-27
+% 2014-05-29
 
 Falls die Umlaute in dieser und anderen Dateien nicht korrekt dargestellt werden, sollten Sie File > Reopen with Encoding > UTF-8 sofort machen (und auf jeden Fall ohne davor zu speichern), damit die Enkodierung korrekt erkannt wird! 
 
@@ -97,7 +97,7 @@ print(xtable(priming.by.subject), type = "html", include.rownames = FALSE)
 ```
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed May 28 17:21:20 2014 -->
+<!-- Thu May 29 12:22:03 2014 -->
 <TABLE border=1>
 <TR> <TH> cond </TH> <TH> subj </TH> <TH> RT </TH>  </TR>
   <TR> <TD> DD </TD> <TD> 1 </TD> <TD align="right"> 569.75 </TD> </TR>
@@ -233,7 +233,7 @@ print(xtable(priming.by.subject.wide1), type = "html", include.rownames = FALSE)
 ```
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed May 28 17:21:20 2014 -->
+<!-- Thu May 29 12:22:03 2014 -->
 <TABLE border=1>
 <TR> <TH> subj </TH> <TH> DD </TH> <TH> DE </TH> <TH> ED </TH> <TH> EE </TH>  </TR>
   <TR> <TD> 1 </TD> <TD align="right"> 569.75 </TD> <TD align="right"> 655.15 </TD> <TD align="right"> 592.00 </TD> <TD align="right"> 587.70 </TD> </TR>
@@ -277,7 +277,7 @@ print(xtable(priming.by.subject.wide2), type = "html", include.rownames = FALSE)
 ```
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed May 28 17:21:20 2014 -->
+<!-- Thu May 29 12:22:03 2014 -->
 <TABLE border=1>
 <TR> <TH> cond </TH> <TH> 1 </TH> <TH> 2 </TH> <TH> 3 </TH> <TH> 4 </TH> <TH> 5 </TH> <TH> 6 </TH> <TH> 7 </TH> <TH> 8 </TH> <TH> 9 </TH> <TH> 10 </TH> <TH> 11 </TH> <TH> 12 </TH> <TH> 13 </TH> <TH> 14 </TH> <TH> 15 </TH> <TH> 16 </TH> <TH> 17 </TH> <TH> 18 </TH> <TH> 19 </TH> <TH> 20 </TH> <TH> 21 </TH> <TH> 22 </TH> <TH> 23 </TH> <TH> 24 </TH> <TH> 25 </TH> <TH> 26 </TH> <TH> 27 </TH> <TH> 28 </TH> <TH> 29 </TH> <TH> 30 </TH>  </TR>
   <TR> <TD> DD </TD> <TD align="right"> 569.75 </TD> <TD align="right"> 512.95 </TD> <TD align="right"> 503.15 </TD> <TD align="right"> 616.45 </TD> <TD align="right"> 698.45 </TD> <TD align="right"> 562.75 </TD> <TD align="right"> 584.60 </TD> <TD align="right"> 546.15 </TD> <TD align="right"> 457.35 </TD> <TD align="right"> 496.60 </TD> <TD align="right"> 496.35 </TD> <TD align="right"> 556.10 </TD> <TD align="right"> 491.45 </TD> <TD align="right"> 556.90 </TD> <TD align="right"> 417.20 </TD> <TD align="right"> 526.90 </TD> <TD align="right"> 502.75 </TD> <TD align="right"> 470.75 </TD> <TD align="right"> 626.45 </TD> <TD align="right"> 815.25 </TD> <TD align="right"> 673.60 </TD> <TD align="right"> 534.50 </TD> <TD align="right"> 532.80 </TD> <TD align="right"> 513.20 </TD> <TD align="right"> 491.65 </TD> <TD align="right"> 415.60 </TD> <TD align="right"> 500.70 </TD> <TD align="right"> 494.65 </TD> <TD align="right"> 507.90 </TD> <TD align="right"> 512.10 </TD> </TR>
@@ -340,7 +340,7 @@ print(xtable(priming.by.item.wide), type = "html", include.rownames = FALSE)
 ```
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed May 28 17:21:32 2014 -->
+<!-- Thu May 29 12:22:17 2014 -->
 <TABLE border=1>
 <TR> <TH> cond </TH> <TH> 1 </TH> <TH> 2 </TH> <TH> 3 </TH> <TH> 4 </TH> <TH> 5 </TH> <TH> 6 </TH> <TH> 7 </TH> <TH> 8 </TH> <TH> 9 </TH> <TH> 10 </TH> <TH> 11 </TH> <TH> 12 </TH> <TH> 13 </TH> <TH> 14 </TH> <TH> 15 </TH> <TH> 16 </TH> <TH> 17 </TH> <TH> 18 </TH> <TH> 19 </TH> <TH> 20 </TH>  </TR>
   <TR> <TD> DD </TD> <TD align="right"> 521.33 </TD> <TD align="right"> 538.47 </TD> <TD align="right"> 516.27 </TD> <TD align="right"> 479.60 </TD> <TD align="right"> 538.43 </TD> <TD align="right"> 543.53 </TD> <TD align="right"> 592.90 </TD> <TD align="right"> 579.70 </TD> <TD align="right"> 537.37 </TD> <TD align="right"> 510.43 </TD> <TD align="right"> 536.23 </TD> <TD align="right"> 495.17 </TD> <TD align="right"> 609.37 </TD> <TD align="right"> 527.83 </TD> <TD align="right"> 516.53 </TD> <TD align="right"> 519.73 </TD> <TD align="right"> 547.93 </TD> <TD align="right"> 508.90 </TD> <TD align="right"> 643.90 </TD> <TD align="right"> 526.37 </TD> </TR>
@@ -397,7 +397,7 @@ print(xtable(priming.f1$ANOVA), type = "html", include.rownames = FALSE)
 ```
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed May 28 17:22:04 2014 -->
+<!-- Thu May 29 12:22:44 2014 -->
 <TABLE border=1>
 <TR> <TH> Effect </TH> <TH> DFn </TH> <TH> DFd </TH> <TH> SSn </TH> <TH> SSd </TH> <TH> F </TH> <TH> p </TH> <TH> p&lt;.05 </TH> <TH> ges </TH>  </TR>
   <TR> <TD> (Intercept) </TD> <TD align="right"> 1.00 </TD> <TD align="right"> 29.00 </TD> <TD align="right"> 38940134.70 </TD> <TD align="right"> 704326.36 </TD> <TD align="right"> 1603.32 </TD> <TD align="right"> 0.00 </TD> <TD> * </TD> <TD align="right"> 0.98 </TD> </TR>
@@ -422,7 +422,7 @@ print(xtable(priming.f1$ANOVA, display = c("s", "s", "d", "d", "f", "f", "f",
 ```
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed May 28 17:22:04 2014 -->
+<!-- Thu May 29 12:22:44 2014 -->
 <TABLE border=1>
 <TR> <TH> Effect </TH> <TH> DFn </TH> <TH> DFd </TH> <TH> SSn </TH> <TH> SSd </TH> <TH> F </TH> <TH> p </TH> <TH> p&lt;.05 </TH> <TH> ges </TH>  </TR>
   <TR> <TD> (Intercept) </TD> <TD align="right"> 1 </TD> <TD align="right"> 29 </TD> <TD align="right"> 38940134.70 </TD> <TD align="right"> 704326.36 </TD> <TD align="right"> 1603.32 </TD> <TD align="right"> 0.0000000000000000000000000062 </TD> <TD> * </TD> <TD align="right"> 0.98 </TD> </TR>
@@ -468,13 +468,29 @@ print(xtable(priming.f2$ANOVA), type = "html", include.rownames = FALSE)
 ```
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed May 28 17:22:26 2014 -->
+<!-- Thu May 29 12:23:08 2014 -->
 <TABLE border=1>
 <TR> <TH> Effect </TH> <TH> DFn </TH> <TH> DFd </TH> <TH> SSn </TH> <TH> SSd </TH> <TH> F </TH> <TH> p </TH> <TH> p&lt;.05 </TH> <TH> ges </TH>  </TR>
   <TR> <TD> (Intercept) </TD> <TD align="right"> 1.00 </TD> <TD align="right"> 19.00 </TD> <TD align="right"> 25960089.80 </TD> <TD align="right"> 92393.37 </TD> <TD align="right"> 5338.50 </TD> <TD align="right"> 0.00 </TD> <TD> * </TD> <TD align="right"> 0.99 </TD> </TR>
   <TR> <TD> prime </TD> <TD align="right"> 1.00 </TD> <TD align="right"> 19.00 </TD> <TD align="right"> 674.73 </TD> <TD align="right"> 14562.66 </TD> <TD align="right"> 0.88 </TD> <TD align="right"> 0.36 </TD> <TD>  </TD> <TD align="right"> 0.00 </TD> </TR>
   <TR> <TD> target </TD> <TD align="right"> 1.00 </TD> <TD align="right"> 19.00 </TD> <TD align="right"> 37140.71 </TD> <TD align="right"> 35559.97 </TD> <TD align="right"> 19.84 </TD> <TD align="right"> 0.00 </TD> <TD> * </TD> <TD align="right"> 0.20 </TD> </TR>
   <TR> <TD> prime:target </TD> <TD align="right"> 1.00 </TD> <TD align="right"> 19.00 </TD> <TD align="right"> 10593.80 </TD> <TD align="right"> 8473.95 </TD> <TD align="right"> 23.75 </TD> <TD align="right"> 0.00 </TD> <TD> * </TD> <TD align="right"> 0.07 </TD> </TR>
+   </TABLE>
+
+```r
+print(xtable(priming.f2$ANOVA, display = c("s", "s", "d", "d", "f", "f", "f", 
+    "fg", "s", "g"), digits = c(0, 0, 0, 0, 2, 2, 2, 2, 0, 2)), type = "html", 
+    include.rownames = FALSE)
+```
+
+<!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
+<!-- Thu May 29 12:23:08 2014 -->
+<TABLE border=1>
+<TR> <TH> Effect </TH> <TH> DFn </TH> <TH> DFd </TH> <TH> SSn </TH> <TH> SSd </TH> <TH> F </TH> <TH> p </TH> <TH> p&lt;.05 </TH> <TH> ges </TH>  </TR>
+  <TR> <TD> (Intercept) </TD> <TD align="right"> 1 </TD> <TD align="right"> 19 </TD> <TD align="right"> 25960089.80 </TD> <TD align="right"> 92393.37 </TD> <TD align="right"> 5338.50 </TD> <TD align="right"> 0.00000000000000000000000096 </TD> <TD> * </TD> <TD align="right"> 0.99 </TD> </TR>
+  <TR> <TD> prime </TD> <TD align="right"> 1 </TD> <TD align="right"> 19 </TD> <TD align="right"> 674.73 </TD> <TD align="right"> 14562.66 </TD> <TD align="right"> 0.88 </TD> <TD align="right"> 0.36 </TD> <TD>  </TD> <TD align="right"> 0.0044 </TD> </TR>
+  <TR> <TD> target </TD> <TD align="right"> 1 </TD> <TD align="right"> 19 </TD> <TD align="right"> 37140.71 </TD> <TD align="right"> 35559.97 </TD> <TD align="right"> 19.84 </TD> <TD align="right"> 0.00027 </TD> <TD> * </TD> <TD align="right"> 0.2 </TD> </TR>
+  <TR> <TD> prime:target </TD> <TD align="right"> 1 </TD> <TD align="right"> 19 </TD> <TD align="right"> 10593.80 </TD> <TD align="right"> 8473.95 </TD> <TD align="right"> 23.75 </TD> <TD align="right"> 0.00011 </TD> <TD> * </TD> <TD align="right"> 0.066 </TD> </TR>
    </TABLE>
 
 
@@ -533,7 +549,7 @@ print(xtable(priming.f1.englisch.target$ANOVA, display = c("s", "s", "d", "d",
 ```
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed May 28 17:22:31 2014 -->
+<!-- Thu May 29 12:23:12 2014 -->
 <TABLE border=1>
 <TR> <TH> Effect </TH> <TH> DFn </TH> <TH> DFd </TH> <TH> SSn </TH> <TH> SSd </TH> <TH> F </TH> <TH> p </TH> <TH> p&lt;.05 </TH> <TH> ges </TH>  </TR>
   <TR> <TD> (Intercept) </TD> <TD align="right"> 1 </TD> <TD align="right"> 29 </TD> <TD align="right"> 20970809.92 </TD> <TD align="right"> 405363.34 </TD> <TD align="right"> 1500.27 </TD> <TD align="right"> 0.000000000000000000000000016 </TD> <TD> * </TD> <TD align="right"> 0.98 </TD> </TR>
@@ -564,7 +580,7 @@ print(xtable(priming.f1.deutsch.target$ANOVA, display = c("s", "s", "d", "d",
 ```
 
 <!-- html table generated in R 3.1.0 by xtable 1.7-3 package -->
-<!-- Wed May 28 17:22:32 2014 -->
+<!-- Thu May 29 12:23:13 2014 -->
 <TABLE border=1>
 <TR> <TH> Effect </TH> <TH> DFn </TH> <TH> DFd </TH> <TH> SSn </TH> <TH> SSd </TH> <TH> F </TH> <TH> p </TH> <TH> p&lt;.05 </TH> <TH> ges </TH>  </TR>
   <TR> <TD> (Intercept) </TD> <TD align="right"> 1 </TD> <TD align="right"> 29 </TD> <TD align="right"> 18025035.84 </TD> <TD align="right"> 345779.58 </TD> <TD align="right"> 1511.73 </TD> <TD align="right"> 0.000000000000000000000000014 </TD> <TD> * </TD> <TD align="right"> 0.98 </TD> </TR>
@@ -574,4 +590,4 @@ print(xtable(priming.f1.deutsch.target$ANOVA, display = c("s", "s", "d", "d",
 
 
 # Lizenz
-Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz.
+Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz. Diese Lizenz darf nur zu Prüfungszwecken verwendet werden.

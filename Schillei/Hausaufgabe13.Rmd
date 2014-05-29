@@ -124,7 +124,7 @@ ggplot(data=priming.by.item) + geom_violin(aes(x=cond,y=RT,color=cond,fill=cond)
 
 Sehen die Daten by Subject und by Item gleich aus? Wie sehen sie im Vergleich zu den Single-Trial-Daten aus?
 
-Nein, besonders hinsichtlich der Bedingungen DD und ED erkennt man unterschiede. Die Steurung für diese Bedingungen scheinen by subject größer zu sein als by item. Im Vergleich zu den Single-Trial Daten, sehen die Varianzen der by-item und by-subject Daten über die Bedingungen hinweg heterogener aus.
+Nein, besonders hinsichtlich der Bedingungen DD und ED erkennt man Unterschiede. Die Streuung für diese Bedingungen scheinen by subject größer zu sein als by item. Im Vergleich zu den Single-Trial Daten, sehen die Varianzen der by-item und by-subject Daten über die Bedingungen hinweg heterogener aus.
 
 # Subject- und Item-Analysen
 
@@ -179,6 +179,10 @@ priming.f2 <- ezANOVA(priming, dv=.(RT), wid=.(item), within=.(prime,target), de
 ### ANOVA
 ```{r, results='asis'}
 print(xtable(priming.f2$ANOVA),type="html",include.rownames=FALSE)
+print(xtable(priming.f2$ANOVA
+             , display=c("s","s","d","d","f","f","f","fg","s","g")
+             , digits=c(0,0,0,0,2,2,2,2,0,2))
+      ,type="html",include.rownames=FALSE)
 ```
 
 # Interaktionen 
@@ -233,4 +237,4 @@ print(xtable(priming.f1.deutsch.target$ANOVA, display=c("s","s","d","d","f","f",
 
 
 # Lizenz
-Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz.
+Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz. Die Datei darf nur zu Prüfungszwecken verwendet werden.
