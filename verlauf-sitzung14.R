@@ -1,4 +1,4 @@
-priming <- read.table("Data/priming.tab",header = T)
+ppriming <- read.table("Data/priming.tab",header = T)
 priming$subj <- as.factor(priming$subj)
 priming <- subset(priming, item <= 20) # Filler ausschließen
 priming$item <- as.factor(priming$item)
@@ -24,7 +24,6 @@ ggplot(priming.by.subject) + geom_jitter(aes(x=cond,y=RT))
 ?geom_jitter
 ggplot(priming.by.subject) + geom_jitter(aes(x=cond,y=RT),position=position_jitter(width=.1))
 ggplot(priming.by.subject) + geom_jitter(aes(x=cond,y=RT),position=position_jitter(width=0))
-ggplot(priming.by.subject) + geom_point(aes(x=cond,y=RT))
 ggplot(priming.by.subject) + geom_point(aes(x=cond,y=RT),alpha=0.2)
 ggplot(priming.by.subject) + geom_point(aes(x=cond,y=RT),alpha=0.5)
 ggplot(priming) + geom_point(aes(x=cond,y=RT),alpha=0.5)
