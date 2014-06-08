@@ -1,6 +1,6 @@
 # Hausaufgabe 15
 # Isabel Schiller <Schillei@students.uni-marburg.de>
-# 2014-06-04
+# 2014-06-08
 # Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz.
 # Die Datei darf als Beispiel verwendet werden.
 
@@ -69,15 +69,34 @@ print(summary(m2))
 # von weight.kg darstellen? Plotten und berechnen Sie das neue Modell, wie ich
 # es oben für die zwei bisherigen Modelle gemacht habe.
 
-m3 <- lm(height ~ weight, data = women.metric)
+ggplot(women.metric, aes(x=weight.kg, y=height.cm)) + geom_point() + geom_smooth(method="lm")
+m3 <- lm(height.cm ~ weight.kg, data = women.metric)
 print (summary(m3))
+
 # Hat sich der R^2 Wert geändert? Die t-Werte? Die Koeffizienten? Was ist die
 # Beziehung zwischen diesem Modell und m2?
 
 # Wie sieht es aus mit den Daten zum Kursteilnehmern? Plotten Sie und berechnen
 # Sie ein Modell für das Gewicht der Teilnehmer als Funktion von Körpergröße.
 
-# CODE_HIER
+ggplot(body, aes(x=height, y=weight)) + geom_point() + geom_smooth(method="lm")
+m4 <- lm(weight ~ height, data = body)
+print (summary(m4))
 
 # Warum funktioniert die Regression besser beim Datensatz "women" als bei den
 # Kursteilnehmerdaten? HINT: Lesen Sie die Hilfe-Beschreibung von women! 
+
+# ANTWORT:
+# 1. weil es sich bei diesem Datensatz um die durchschnittliche Größe von
+# Amerikanerinnen im Alter zw. 30 - 39 Jahren handelt. Es ist anzunehmen, dass 
+# die Stichprobe wesentlich größer war als in unserem Kurs. 
+ 
+# 2. weil wir eben Frauen und Männer auf einmal betrachtet haben. 
+# Sehen wir uns einmal nur die Frauen an:
+
+women <- subset(body, body$sex == "f")
+ggplot (women, aes(x=height, y=weight)) + geom_point () + geom_smooth(method="lm")
+m5 <- lm(weight ~ height, data=women)
+print (summary(m5))
+
+# das macht auch keinen großen Unterschied. Der r2 Wert ist sehr niedrig. 
