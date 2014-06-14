@@ -89,7 +89,7 @@ print (summary(m4))
 # ANTWORT:
 # 1. weil es sich bei diesem Datensatz um die durchschnittliche Größe von
 # Amerikanerinnen im Alter zw. 30 - 39 Jahren handelt. Es ist anzunehmen, dass 
-# die Stichprobe wesentlich größer war als in unserem Kurs. 
+# die Stichprobe größer war als in unserem Kurs. 
  
 # 2. weil wir eben Frauen und Männer auf einmal betrachtet haben. 
 # Sehen wir uns einmal nur die Frauen an:
