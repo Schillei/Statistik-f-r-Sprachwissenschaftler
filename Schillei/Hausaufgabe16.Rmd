@@ -117,7 +117,8 @@ ggplot(diamonds,aes(x=x, y=price)) + geom_point(alpha=.3) + geom_smooth(method="
 
 # Einfluss von y
 ggplot(diamonds,aes(x=y, y=price)) + geom_point(alpha=.3) + geom_smooth(method="lm")
-# Auch hier besteht ein Zusammenhang. Allerdings gibt es überhaupt keine Datenpunkte für die höheren Preisklassen, was ich mir nicht erklären kann
+# Auch hier besteht ein Zusammenhang. Allerdings gibt es überhaupt keine 
+# Datenpunkte für die höheren Preisklassen, was ich mir nicht erklären kann
 
 # Einfluss von z
 ggplot(diamonds,aes(x=z, y=price)) + geom_point(alpha=.3) + geom_smooth(method="lm")
@@ -137,7 +138,7 @@ summary(lm(price ~ carat, data=diamonds))
 # Das Ergebnis ist signifikant. Der Preis wird durch Karat bedingt. Das Modell erklärt
 # etwa 85% der Varianz.
 summary(lm(price ~ x, data=diamonds))
-# Auch dieses Ergebnis ist signifikant. Die Länge erklärt 0.78% der Varianz. Seltsam
+# Auch dieses Ergebnis ist signifikant. Die Länge erklärt 78% der Varianz. Seltsam
 # finde ich, dass die Steigung negativ ist, was ja bedeuten würde: je geringer die Länge,
 # desto höher der Preis. 
 
@@ -145,7 +146,8 @@ summary(lm(price ~ x, data=diamonds))
 summary(lm(price ~ carat + x, data = diamonds))
 # Zusammen erklären die Variablen 85% der Varianz, was keinen Unterschied zur Berechnung
 # von Karat allein ergibt. Heißt das nun, dass der Einfluss von Länge sehr gering ist? 
-# Oder dass Länge und Karat unmittelbar zusammen hängen? Um diese Frage zu überprüfen, schauen wir uns die Interaktion beider Variablen an:
+# Oder dass Länge und Karat unmittelbar zusammen hängen? Um diese Frage zu überprüfen, 
+# schauen wir uns die Interaktion beider Variablen an:
 summary(lm(price ~ carat*x, data = diamonds))
 # Da für die Interaktion p < 0.05 berechnet wird, ist das Ergebnis signifikant: Länge
 # und Karat interagieren mit einander und beeinflussen den Preis. Der r^2 Wert ändert
@@ -211,23 +213,23 @@ summary(lm(price~x*y*z, data=diamonds))
 # Größe abhängt, ist dieses Ergebnis nicht verwunderlich.
 ```
 
+# Ergebnisse
+
+- Karat und dier Interaktion aus Länge, Breite und Tiefe der Diamanten haben den größten Einfluss auf den Preis. Sie erklären die meiste Varianz (85% und 86%).
+- Dennoch haben alle untersuchten Variablen einen signifikaten Einfluss auf den Preis der Diamanten, obwohl sie mehr oder weniger viel Varianz erklären.
+
 # Fazit
-Er hat sich herausgestellt, dass alle unabhängigen Variable einen signifikanten
-Einfluss auf den Preis eines Diamanten haben. Bei den nicht-intervallskalierten 
-Daten, musste ich die ANOVA zur Berechnung heranziehen. Folglich konnten die 
-Ergebnisse keine Aussage darüber liefern, wie viel Varianz durch die jeweilige
-Variable erklärt wird. 
 
-Die Interpretation der Plots hat nicht immer mit den Berechnungen übereingestimmt. 
-Tatsächlich habe ich Schwierigkeiten bei der Interpretation der Plots gehabt. Eine
-wirklich aussagekräftige Grafik mit linearem Modell ergab sich nur bei Karat.
+- Interpretation der Plots schwierig und nicht immer übereinstimmend mit den statistischen Ergebnissen. 
+- keine Erklärung dafür warum die Plots von x und y so merkwürdig aussehen. Warum sind keinerlei Werte in den höheren Preiskategorien?
+- Die Einschätzung, dass die nominalskalierten Variablen nur wenig Varianz erklären beruht allein auf den Plots, da die ANOVA keinen r^2 Wert ausgibt.
+- Offenbar ist der Einfluss von Variablen bereits relevant, wenn diese nur eine sehr geringen Teil der Varianz erklären. Das wundert mich.
+- Meine Analyse war explorativ, da ich untersucht habe, welche Variablen einen Einfluss auf den Preis haben. vorab bestand kein Hypothese zu dieser Fragestellung.
 
-Karat und die Interaktion von Breite, Länge und Tiefe, haben den größten Einfluss
-auf den Preis eines Diamanten. Sie erklären die meiste Varianz.
+# Was unbeantwortet bleibt
+- wie viel Varianz erklären die nominal skalierten Daten?
+- Warum ist die Steigung der Koeffizienten z.T. negativ (z.B. bei der Interaktion von x, y und z)?
+- Wir wissen zwar nun, dass Karat und die Interaktion von x,y und z den größten Einfluss auf den Preis haben, aber nicht, wie dieser Einfluss eigentlich konkret aussieht.
 
-Die Analyse hat mir gezeigt, dass Variablen häufig nur wenig der Varianz erklären,
-auch wenn sie der Berechnung zufolge einen signifikanten Einfluss haben. 
-
-Berechnungen über
 # Lizenz
 Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz. Diese Datei darf als Beispiel verwendet werden.
