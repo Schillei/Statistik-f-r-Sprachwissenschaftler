@@ -1,6 +1,6 @@
 % Hausaufgabe 16
 % Isabel Schiller <Schillei@students.uni-marburg.de>
-% 2014-06-12
+% 2014-06-14
 
 Falls die Umlaute in dieser und anderen Dateien nicht korrekt dargestellt werden, sollten Sie File > Reopen with Encoding > UTF-8 sofort machen (und auf jeden Fall ohne davor zu speichern), damit die Enkodierung korrekt erkannt wird! 
 
@@ -129,5 +129,105 @@ ggplot(diamonds, aes(x = carat, y = price, color = color)) + geom_point() +
 # Noch eine Überlegung
 Haben Sie dabei explorativ oder konfirmativ gearbeitet? Was hat das für eine Auswirkung auf die Interpretation der Ergebnisse?
 
+# Analyse
+Fragestellung: Was bestimmt den Preis eines Diamanten?
+
+abhängige Variable: price
+unabhängige Variablen: carat, color, clarity, depth, table, x, y, z
+
+Erst mal schauen, wie die Einflüsse der unterschiedlichen Variablen auf den Preis aussehen:
+
+```r
+# Einfluss von Karat
+ggplot(diamonds, aes(x = carat, y = price)) + geom_point(alpha = 0.3) + geom_smooth(method = "lm")
+```
+
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-51.png) 
+
+```r
+# Offenbar hat Karat einen großen Einfluss auf den Preis.Je mehr Karat,
+# desto höher der Preis, auch wenn es eine recht hohe Streuung gibt.
+
+# Einfluss von Farbe
+ggplot(data = diamonds) + geom_violin(aes(x = color, y = price, color = color, 
+    fill = color), alpha = 0.3)
+```
+
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-52.png) 
+
+```r
+# Offenbar hat die Farbe kaum einen Einfluss auf den Preis. Die Farben 1,2
+# und 3 scheinen jedoch im großen und ganzen eher günstiger zu sein. In den
+# höheren Preiskategorien sind eher die Farben 6 und 7 anzuordnen, während
+# 3, 4 und 5 dazwischen liegen.
+
+# Einfluss von Klarheit
+ggplot(data = diamonds) + geom_violin(aes(x = clarity, y = price, color = clarity, 
+    fill = clarity), alpha = 0.3)
+```
+
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-53.png) 
+
+```r
+# Auch der Einfluss der Klarheit ist gering.Es ist jedoch schwer zu
+# beurteilen, da es sicherlich viel weniger teure als günstige Diamanten
+# gibt und sich die Grafik (wie auch die vorherige) daher schwer beurteilen
+# lässt.
+
+# Einfluss von Tiefe
+ggplot(diamonds, aes(x = depth, y = price)) + geom_point(alpha = 0.3) + geom_smooth(method = "lm")
+```
+
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-54.png) 
+
+```r
+# Der Einfluss der Tiefe sieht ebenfalls gering aus. Die Regressionsgerade
+# ist beinahe horizontal.
+
+# Einfluss von Table (was auch immer das ist)
+ggplot(diamonds, aes(x = table, y = price)) + geom_point(alpha = 0.3) + geom_smooth(method = "lm")
+```
+
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-55.png) 
+
+```r
+# Was ist das denn? Die Gerade ist toll, aber die Punkte sind doch ganz
+# anders verteilt. Kann ich mir nicht erklären.Eigentlich sind die Punkte
+# doch ähnlich verteilt wie bei der Variablen Table und trotzdem sieht die
+# Regressionsgerade so anders aus.
+
+# Einfluss von x
+ggplot(diamonds, aes(x = x, y = price)) + geom_point(alpha = 0.3) + geom_smooth(method = "lm")
+```
+
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-56.png) 
+
+```r
+# Hier besteht ein Zusammenhang. Je größer die Länge der Diamanten, desto
+# teurer sind sie auch.
+
+# Einfluss von y
+ggplot(diamonds, aes(x = y, y = price)) + geom_point(alpha = 0.3) + geom_smooth(method = "lm")
+```
+
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-57.png) 
+
+```r
+# Auch hier besteht ein Zusammenhang. Allerdings gibt es überhaupt keine
+# Datenpunkte für die höheren Preisklassen, was ich mir nicht erklären kann
+
+# Einfluss von z
+ggplot(diamonds, aes(x = z, y = price)) + geom_point(alpha = 0.3) + geom_smooth(method = "lm")
+```
+
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-58.png) 
+
+```r
+# Auch hier besteht ein Zusammenhang. Es besteht allerdings das gleiche
+# Problem wie bei Variable y.
+```
+
+Die Grafiken haben gezeigt, dass besonders Karat und x eine großen Einfluss auf den Preis eines Diamanten haben. Deshalb soll im Folgenden überprüft werden, ob dieser Einfluss auch statistisch belegt werden kann und welche Variable den höheren Einfluss hat.
+
 # Lizenz
-Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz.
+Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz. Diese Datei darf als Beispiel verwendet werden.
