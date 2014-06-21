@@ -1,8 +1,8 @@
 Statistik für Sprachwissenschaftler
 ========================================================
-author: Phillip M . Alday
-date: 2014-05-12   
-autosize: false
+author: Isabel Schiller (Schillei@students.uni-marburg.de)
+date: 2014-05-14   
+autosize: Diese Datei darf nur für Prüfungszwecke verwendet werden.
 
 ```{r setup, include=FALSE}
 opts_chunk$set(cache=TRUE,prompt=TRUE)

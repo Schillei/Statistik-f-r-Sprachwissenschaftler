@@ -1,0 +1,235 @@
+% Hausaufgabe 16
+% Isabel Schiller <Schillei@students.uni-marburg.de>
+% 2014-06-14
+
+Falls die Umlaute in dieser und anderen Dateien nicht korrekt dargestellt werden, sollten Sie File > Reopen with Encoding > UTF-8 sofort machen (und auf jeden Fall ohne davor zu speichern), damit die Enkodierung korrekt erkannt wird! 
+
+```{r, echo=FALSE}
+# Notwendige Pakete laden
+library(ggplot2)
+library(ez)
+library(xtable)
+library(reshape2)
+suppressPackageStartupMessages(library(knitcitations))
+```
+
+# Die nächsten Punkte sollten beinahe automatisch sein...
+1. Kopieren Sie diese Datei in Ihren Ordner (das können Sie innerhalb RStudio machen oder mit Explorer/Finder/usw.) und öffnen Sie die Kopie. Ab diesem Punkt arbeiten Sie mit der Kopie. Die Kopie bitte `hausaufgabe16.Rmd` nennen und nicht `Kopie...`
+2. Sie sehen jetzt im Git-Tab, dass die neue Datei als unbekannt (mit gelbem Fragezeichen) da steht. Geben Sie Git Bescheid, dass Sie die Änderungen in der Datei verfolgen möchten (auf Stage klicken).
+3. Machen Sie ein Commit mit den bisherigen Änderungen (schreiben Sie eine sinnvolle Message dazu -- sinnvoll bedeutet nicht unbedingt lang) und danach einen Push.
+4. Ersetzen Sie meinen Namen oben mit Ihrem. Klicken auf Stage, um die Änderung zu merken.
+5. Ändern Sie das Datum auf heute. (Seien Sie ehrlich! Ich kann das sowieso am Commit sehen.)
+6. Sie sehen jetzt, dass es zwei Symbole in der Status-Spalte gibt, eins für den Zustand im *Staging Area* (auch als *Index* bekannt), eins für den Zustand im Vergleich zum Staging Area. Sie haben die Datei modifiziert, eine Änderung in das Staging Area aufgenommen, und danach weitere Änderungen gemacht. Nur Änderungen im Staging Area werden in den Commit aufgenommen.
+7. Stellen Sie die letzten Änderungen auch ins Staging Area und machen Sie einen Commit (immer mit sinnvoller Message!).
+8. Vergessen Sie nicht am Ende, die Lizenz ggf. zu ändern!
+
+# Diamonds are forever 
+Bisher haben Sie von mir mehr oder weniger vollständige Analysen bekommen, bei denen Sie im Prinzip nur einzelne Schritte einfügen müssten. Es wird allerdings langsam Zeit, dass Sie eine eigenständige Analyse ausführen. Sie haben das bei der Analyse vom Priming Experiment mittels ANOVA fast gemacht, aber auch da haben Sie viel von mir vorgefertigt bekommen. Für die Aufgaben heute werden Sie den Datensatz `diamonds` aus `ggplot2` bearbeiten. Schauen Sie sich die Beschreibung des Datensatzes an
+
+```{r, eval=FALSE}
+?diamonds
+```
+<div style="border: 2px solid black; padding: 5px; font-size: 80%;">
+```{r, echo=FALSE, results='asis'}
+tools:::Rd2HTML(utils:::.getHelpFile(help(diamonds)),stylesheet="")
+```
+</div>
+
+Die Aufgabe ist: eine Ausgangsfrage und die darauf folgenden Anschlussfragen statistisch zu beantworten. Sie können auch einige kleinere Fragen als Gruppe behandeln. Sie haben frei Wahl von Methoden und Fragen, aber sie müssen natürlich zueinander passen!
+
+Mögliche Ausgangsfragen sind unter anderem:
+
+* Was bestimmt den Preis eines Diamenten?
+* Was bestimmt das Gewicht eines Diamenten? Hat Farbe oder Klarheit eine Auswirkung daruf oder bloß Volumen?
+* Gibt es einen Zusammenhang zwischen den verschieden Dimensionen ("Längen")? 
+* Gibt es einen Zusammenhang zwischen Farbe und Klarheit? Zwischen Farbe und Carat? Zwischen Farbe und Tiefe?
+* ...
+
+*Vergessen Sie dabei nicht, dass wir bisher nur Methoden gelernt haben, wo die abhängige Variable zumindest intervallskaliert ist!*
+
+Sie können sich auch [das *ggplot* Buch](http://dx.doi.org/10.1007/978-0-387-98141-3) zur Inspiration anschauen, v.a. Abbildungen 4.7, 4.8, 4.9, 5.2, 5.3, 5.4, 5.6, 5.14, 7.16, 9.1  und Kapitel 2.2-2.5 könnten inspirierend wirken. Den Code zur Erstellung der Figuren findet man immer im Haupttext.
+
+**Originale Fragestellungen und Auswertungen werden mit Bonuspunkten belohnt!** 
+
+Hier ein paar Grafiken (auch im Buch zu finden):
+```{r}
+ggplot(diamonds,aes(x=carat,y=price,color=color)) + geom_point()
+ggplot(diamonds,aes(x=carat,y=price,color=color)) + geom_point(alpha=0.3)
+ggplot(diamonds,aes(x=carat,y=price,color=color)) + geom_point() + facet_wrap(~color)
+```
+
+# Noch eine Überlegung
+Haben Sie dabei explorativ oder konfirmativ gearbeitet? Was hat das für eine Auswirkung 
+auf die Interpretation der Ergebnisse?
+
+# Analyse
+Fragestellung: Was bestimmt den Preis eines Diamanten?
+
+abhängige Variable: 
+- metrisch: price
+
+unabhängige Variablen: 
+- nominal: clarity, cut, color
+- metrisch: carat, depth, table, x, y, z
+
+Erst mal schauen, wie die Einflüsse der unterschiedlichen Variablen auf den Preis 
+aussehen:
+```{r}
+# Einfluss von Karat
+ggplot(diamonds,aes(x=carat, y=price)) + geom_point(alpha=.3) + geom_smooth(method="lm")
+# Offenbar hat Karat einen großen Einfluss auf den Preis.Je mehr Karat, desto höher der
+# Preis, auch wenn es eine recht hohe Streuung gibt.
+
+# Einfluss von Farbe
+ggplot(data=diamonds) + geom_violin(aes(x=color, y=price, color=color, fill = color),alpha=0.3)
+# Offenbar hat die Farbe kaum einen Einfluss auf den Preis. Die Farben 1,2 und 3 scheinen
+# jedoch im großen und ganzen eher günstiger zu sein. In den höheren Preiskategorien sind
+# eher die Farben 6 und 7 anzuordnen, während 3, 4 und 5 dazwischen liegen.
+
+# Einfluss von Schnitt
+ggplot(data=diamonds) + geom_violin(aes(x=cut, y=price, color=cut, fill = cut),alpha=0.3)
+# Es sieht so aus, als besteht ein gewisser Zusammenhang zw. Schnitt und Preis. die
+# Schnitte very good, premium und ideal sind eher in der höheren Preissegmenten vertretet
+# als die Schnitte fair und good. Da es jedoch vergleichsweise wenig teure Diamanten gibt,
+# lässt sich die Grafik nur grob interpretieren.
+
+# Einfluss von Klarheit
+ggplot(data=diamonds) + geom_violin(aes(x=clarity, y=price, color=clarity, fill = clarity),alpha=0.3)
+# Auch der Einfluss der Klarheit ist gering. Es ist jedoch schwer zu beurteilen, da es
+# sicherlich viel weniger teure als günstige Diamanten gibt und sich die Grafik (wie auch
+# die vorherige) daher schwer beurteilen lässt.
+
+# Einfluss von Tiefe
+ggplot(diamonds,aes(x=depth, y=price)) + geom_point(alpha=.3) + geom_smooth(method="lm")
+# Der Einfluss der Tiefe sieht ebenfalls gering aus. Die Regressionsgerade ist beinahe
+# horizontal.
+
+# Einfluss von Table (was auch immer das ist)
+ggplot(diamonds,aes(x=table, y=price)) + geom_point(alpha=.3) + geom_smooth(method="lm")
+# Was ist das denn? Die Gerade ist toll, aber die Punkte sind doch ganz anders verteilt.
+# Kann ich mir nicht erklären.Eigentlich sind die Punkte doch ähnlich verteilt wie bei der
+# Variablen Table und trotzdem sieht die Regressionsgerade so anders aus.
+
+# Einfluss von x
+ggplot(diamonds,aes(x=x, y=price)) + geom_point(alpha=.3) + geom_smooth(method="lm")
+# Hier besteht ein Zusammenhang. Je größer die Länge der Diamanten, desto teurer sind sie
+# auch.
+
+# Einfluss von y
+ggplot(diamonds,aes(x=y, y=price)) + geom_point(alpha=.3) + geom_smooth(method="lm")
+# Auch hier besteht ein Zusammenhang. Allerdings gibt es überhaupt keine 
+# Datenpunkte für die höheren Preisklassen, was ich mir nicht erklären kann
+
+# Einfluss von z
+ggplot(diamonds,aes(x=z, y=price)) + geom_point(alpha=.3) + geom_smooth(method="lm")
+# Auch hier besteht ein Zusammenhang. Es besteht allerdings das gleiche Problem wie bei
+# Variable y.
+```
+
+ 
+Die Grafiken haben gezeigt, dass besonders Karat und Länge eine großen Einfluss auf den Preis
+eines Diamanten haben. Deshalb soll im Folgenden überprüft werden, ob dieser Einfluss auch
+statistisch belegt werden kann. Da Karat und x metrische Variablen sind, bietet sich eine
+Regression an:
+
+```{r}
+# zunächst betrachten wir den Einfluss von Karat und der Länge einzeln:
+summary(lm(price ~ carat, data=diamonds))
+# Das Ergebnis ist signifikant. Der Preis wird durch Karat bedingt. Das Modell erklärt
+# etwa 85% der Varianz.
+summary(lm(price ~ x, data=diamonds))
+# Auch dieses Ergebnis ist signifikant. Die Länge erklärt 78% der Varianz. Seltsam
+# finde ich, dass die Steigung negativ ist, was ja bedeuten würde: je geringer die Länge,
+# desto höher der Preis. 
+
+# Was ändert sich, wenn wir beide Variablen einbeziehen?
+summary(lm(price ~ carat + x, data = diamonds))
+# Zusammen erklären die Variablen 85% der Varianz, was keinen Unterschied zur Berechnung
+# von Karat allein ergibt. Heißt das nun, dass der Einfluss von Länge sehr gering ist? 
+# Oder dass Länge und Karat unmittelbar zusammen hängen? Um diese Frage zu überprüfen, 
+# schauen wir uns die Interaktion beider Variablen an:
+summary(lm(price ~ carat*x, data = diamonds))
+# Da für die Interaktion p < 0.05 berechnet wird, ist das Ergebnis signifikant: Länge
+# und Karat interagieren mit einander und beeinflussen den Preis. Der r^2 Wert ändert
+# sich jedoch nicht. Woran liegt das?
+```
+Aus den Ergebnissen lässt sich schließen, dass Karat einen größeren Einfluss auf den
+Preis hat, als die Länge der Diamanten. Je mehr Karat, desto teurer ist ein Diamant.
+Zwischen Länge und Karat besteht eine signifikante Interaktion, die ich allerdings
+nicht näher beschreiben kann.
+
+Um nun zu schauen, ob auch die nominal skalierten Variablen einen Einfluss auf den Preis 
+haben rechnen wir ANOVAs:
+```{r}
+# Ist der Einfluss von Farbe signifikant?
+summary(aov(price~color, data=diamonds))
+# Da p < 0.05 hat die Farbe einen signifikanten Einfluss auf den Preis. Das
+# hätte ich nach einem Blick auf den Plot nicht vermutet.
+
+# Ist der Einfluss vom Schnitt signifikant?
+summary(aov(price ~ cut, data = diamonds))
+# Auch dieser Einfluss ist signifikant. Das hatte ich bereits nach dem plotten
+# vermutet.
+
+# Ist der Einfluss von Klarheit signifikant?
+summary(aov(price ~ clarity, data = diamonds))
+# nach der ANOVA schon
+
+# Wie sieht es aus, wenn wir Klarheit als metrisch betrachten?
+clarityNUM <- as.numeric(diamonds$clarity)
+summary(lm(price~clarityNUM, data = diamonds))
+# Es zeigt sich, dass der Einfluss von Klarheit zwar signifikant ist, jedoch
+# nur ca. 2% der Varianz erklärt. Die Koeffizienten zeigen, dass die Steigung 
+# negativ ist. Offenbar führt der Befehl as.numeric dazu, dass den Faktorstufen
+# willkürlich Zahlen zugewiesen werden. Diesen Zahlen liegt aber keine Rangordnung
+# zugrunde, weshalb dieser Befehl (und folglich auch die Regression) sind sinnvoll
+# ist.
+
+# Welchen Einfluss hat die Tiefe?
+summary(lm(price~depth, data=diamonds))
+# Obwohl sich beim Plot eine beinahe horizontale Regressionsgerade gezeigt hat, 
+# hat die Tiefe dieser Berechnung zufolge einen signifikanten Einfluss auf den
+# Preis. Sie erklärt jedoch nur 0,01% der Variation, was sehr wenig ist. 
+
+# Welchen Einfluss hat Table?
+summary(lm(price~table, data=diamonds))
+# Der Einfluss von Table ist signifikant, doch auch diese Variable erklärt nur ca. 
+# 2% der Varianz. 
+
+# Welche Einfluss hat die Breite
+summary(lm(price~y, data=diamonds))
+# Breite hat einen signifikanten Einfluss auf den Preis und erklärt immerhin ca.
+# 75% der Varianz. Je breiter ein Diamant, desto teurer ist er.
+
+# Welchen Einfluss hat Tiefe (mm)?
+summary(lm(price~z, data = diamonds))
+# Tiefe hat einen signifikanten Einfluss auf den Preis und erklärt ca. 74% der 
+# Varianz. 
+
+# Mal sehen wie viel Varianz durch die Interaktion von x, y, und z erklärt wird
+summary(lm(price~x*y*z, data=diamonds))
+# Länge, Breite und Tiefe erklären ca. 86% der Varianz (etwa genauso viel, wie 
+# durch Karat erklärt wird). Da das Gewicht von Diamanten natrlich von ihrer 
+# Größe abhängt, ist dieses Ergebnis nicht verwunderlich.
+```
+
+# Ergebnisse
+
+- Karat und dier Interaktion aus Länge, Breite und Tiefe der Diamanten haben den größten Einfluss auf den Preis. Sie erklären die meiste Varianz (85% und 86%).
+- Dennoch haben alle untersuchten Variablen einen signifikaten Einfluss auf den Preis der Diamanten, obwohl sie mehr oder weniger viel Varianz erklären.
+
+# Fazit
+
+- Interpretation der Plots schwierig und nicht immer übereinstimmend mit den statistischen Ergebnissen. 
+- keine Erklärung dafür warum die Plots von x und y so merkwürdig aussehen. Warum sind keinerlei Werte in den höheren Preiskategorien?
+- Die Einschätzung, dass die nominalskalierten Variablen nur wenig Varianz erklären beruht allein auf den Plots, da die ANOVA keinen r^2 Wert ausgibt.
+- Offenbar ist der Einfluss von Variablen bereits relevant, wenn diese nur eine sehr geringen Teil der Varianz erklären. Das wundert mich.
+- Meine Analyse war explorativ, da ich untersucht habe, welche Variablen einen Einfluss auf den Preis haben. vorab bestand kein Hypothese zu dieser Fragestellung.
+
+# Was unbeantwortet bleibt
+- wie viel Varianz erklären die nominal skalierten Daten?
+- Warum ist die Steigung der Koeffizienten z.T. negativ (z.B. bei der Interaktion von x, y und z)?
+- Wir wissen zwar nun, dass Karat und die Interaktion von x,y und z den größten Einfluss auf den Preis haben, aber nicht, wie dieser Einfluss eigentlich konkret aussieht.
+
+# Lizenz
+Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz. Diese Datei darf als Beispiel verwendet werden.
