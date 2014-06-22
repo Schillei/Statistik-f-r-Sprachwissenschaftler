@@ -124,13 +124,17 @@ print(model2.summary)
 # Bevor Sie die Regression y ~ x1 + x2 berechnen, schauen Sie sich die
 # Korrelation (mit Konfidenzintervall!) zwischen x1 und x2 an:
 
-cor(pyreg$x1, pyreg$x2)
-confint(lm(x1 ~ x2, data=pyreg))
+cor.test(pyreg$x1, pyreg$x2)
 
-# Der Pears'sche Korrelationskoeffizient liegt bei -0,15 (also sehr nah an Null),
-# was bedeutet, dass x1 und x2 sogut wie gar nicht korrelieren. Mit einer Wahrscheinlichkeit
-# von 95% liegt der wahre Populationswert für die Korrelation zw. x1 und x2 zwischen 
-# -0,26 und 0,14. Somit bestätigen beide Berechnungen, dass (nahezu) keine Korrelation vorliegt.
+# Mit t=-0,66 und p > 0,05 wird die Nullhypothese, dass keine Korrelation zw. x1 und x2 
+# vorliegt, beibehalten. Das Konfidenzintervall liegt zwischen -0,56 und 0.31 und gibt die
+# Breite unserer Unsicherheit an. 
+
+# Anmerkung für mich selbst:
+# Die frequentistische Interpretation des Konfidenzintervalls lautet: Wird der gleiche 
+# Versuch unendlich oft durchgeführt, so überdeckt das Intervall in 95% der Versuche 
+# den wahren Erwartungswert. 
+
 # Um sicherzugehen, schauen wir uns das lineare Modell von x1 und x2 an:
 
 ggplot(data=pyreg, aes(x=x2, y=x1)) + geom_point() + geom_smooth (method="lm")
