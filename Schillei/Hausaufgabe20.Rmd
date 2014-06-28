@@ -35,7 +35,7 @@ Wir können Daten direkt von seiner Webseite in R laden:
 
 ```{r}
 stimmen <- read.csv("http://www.bodowinter.com/tutorial/politeness_data.csv")
-
+````
 Wie immer schauen wir uns erstmal die Zusammenfassung der Daten an.
 
 ```{r}
