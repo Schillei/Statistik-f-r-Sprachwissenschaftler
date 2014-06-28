@@ -1,6 +1,6 @@
 % Hausaufgabe 20
 % Isabel Schiller <Schillei@students.uni-marburg.de>
-% 2014-06-27
+% 2014-06-28
 
 Falls die Umlaute in dieser und anderen Dateien nicht korrekt dargestellt werden, sollten Sie File > Reopen with Encoding > UTF-8 sofort machen (und auf jeden Fall ohne davor zu speichern), damit die Enkodierung korrekt erkannt wird! 
 
@@ -35,7 +35,6 @@ Wir können Daten direkt von seiner Webseite in R laden:
 
 ```{r}
 stimmen <- read.csv("http://www.bodowinter.com/tutorial/politeness_data.csv")
-```
 
 Wie immer schauen wir uns erstmal die Zusammenfassung der Daten an.
 
@@ -47,7 +46,9 @@ Die Items in dieser Studie sind "Szenarien", also Situationen wo man mehr oder w
 
 Allerdings merken wir, dass `scenario` falsch kodiert ist, was wir korrigieren müssen:
 
-CODE_BLOCK_HIER
+```{r}
+stimmen$scenario <- as.factor(stimmen$scenario)
+```
 
 ## Auswirkung der experimentellen Manipulation
 Um einen groben Eindruck zu bekommen, können wir schnell einen Boxplot machen:
@@ -74,13 +75,19 @@ Wir können auf ähnliche Art und Weise ein Plot für die Versuchspersonen und S
 
 Erstellen Sie einen Boxplot für `frequency` nach `subject`, wie oben für `frequency` nach `attitude` gemacht wurde (hier ohne Aufteilung nach Geschlecht). Dieser gibt uns einen Blick in die Varianz innerhalb und zwischen Versuchspersonen. 
 
-CODE_BLOCK_HIER
+```{r}
+ggplot(data=stimmen) + geom_boxplot(aes(x=subject, y=frequency)) 
+```
 
 Machen Sie das gleiche für `scenario`. 
 
-CODE_BLOCK_HIER
+```{r}
+ggplot(data=stimmen) + geom_boxplot(aes(x=scenario, y=frequency))
+```
 
-Gibt es mehr Varianz zwischen Szenarien oder zwischen Versuchspersonen? 
+Gibt es mehr Varianz zwischen Szenarien oder zwischen Versuchspersonen?
+
+Antwort (für mich selbst): Zwischen den Versuchspersonen gibt es mehr Varianz als zwischen den verschiedenen Szenarian. Tatsächlich scheint bei den Scenarien die Varianz innerhalb der Gruppen größer zu sein als zwischen den Gruppen.
 
 Die Varianz zwischen Versuchspersonen bzw. Szenarien beschreiben wir durch zufällige Effekte. Es gibt offentsichlich einen Unterschied zwischen den verschiedenen Basisfrequenzen der Einzelversuchenpersonen und es scheint auch zwischen den verschiedenen Szenarien einen Unterschied zu geben, d.h. wir haben auf jeden Fall Intercepts in unserer RE-Struktur. Ob wir auch weitere Struktur in der RE-Struktur aufnehmen, schauen wir uns erst später an.
 
@@ -108,11 +115,13 @@ summary(model.attitude)
 
 Haben sich die Koeffizienten oder Standardfehler geändert?
 
+Antwort(für mich selbst): Nein, sie haben sich nicht geändert. Es kommen offenbar lediglich die zusätzlichen Werte für attitude dazu.
+
 Jetzt berechen wir das Modell mit der Interaktion zwischen `gender` und `attitude`. 
 
 ```{r}
-#model.attitude.int <- CODE_HIER
-#summary(model.attitude.int)
+model.attitude.int <- lmer(frequency ~ gender*attitude + (1|subject) + (1|scenario), data=stimmen, RMEL=FALSE)
+summary(model.attitude.int)
 ```
 
 Haben sich die Koeffizienten oder Standardfehler geändert?
@@ -120,7 +129,7 @@ Haben sich die Koeffizienten oder Standardfehler geändert?
 Ist die Interaktion signifikant? Wir können uns den Koeffizienten anschauen, aber uns interessiert ob *das Model besser geworden ist*. Das testen wir mit `anova()`
 
 ```{r}
-#anova(model.attitude,model.attitude.int)
+anova(model.attitude,model.attitude.int)
 ```
 
 Hat die Interkation das Modell verbessert? Wenn ein komplexeres Modell nicht signifikant besser als ein einfacheres Modell ist, bleiben wir bei dem einfacheren Modell! 
