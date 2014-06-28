@@ -147,9 +147,13 @@ Haben sich die Koeffizienten oder Standardfehler (im Vergleich zu `model.attitud
 
 Hat dieses Modell ein signifikante besseres Fit als `model.attitude`? 
 
-CODE_BLOCK_HIER
+```{r}
+anova(model.attitude, model.attitude.re.slope)
+``` 
 
 Könnten wir hier ein Intercepts-Only-Modell begründen? 
+
+Antwort (für mich selbst): Ja, können wir. Beide Modelle unterscheiden sich nicht signifikant, weshalb wir das einfachere Modell wählen sollten.
 
 Wir könnten -- sollten -- uns hier auch das Modell mit `gender` in der RE-Struktur anschauen, aber solche Berechnungen werden sehr schnell für eine Hausaufgabe zu aufwendig. Sie können sich an dieser Stelle schon vorstellen, wie kompliziert die RE-Struktur werden kann. Wir müssten für jeden zufälligen Effekt die maximale berechenbare Struktur finden und die einzelnen Berechnungen können schon ziemlich lange dauern. Das ist ein deutlicher Nachteil dieser Methode.   
 
@@ -185,7 +189,7 @@ Wir schauen uns zuerst ein Intercept-Only-Modell an:
 coef(model.attitude)
 ```
 
-Wir sehen, dass das Intercept für jedes `subject` und `scenario` ist, aber die Koeffizienten für die Anstige (`genderM` und `attitudepol`) überall gleich sind und zwar die gleichen, die es als fixe Effekte gibt!  Bei dem Modell mit Anstieg in der RE-Struktur gibt es einen Anstieg für jedes `subject` und `scenario`.
+Wir sehen, dass das Intercept für jedes `subject` und `scenario` unterschiedlich ist, aber die Koeffizienten für die Anstige (`genderM` und `attitudepol`) überall gleich sind und zwar die gleichen, die es als fixe Effekte gibt!  Bei dem Modell mit Anstieg in der RE-Struktur gibt es einen Anstieg für jedes `subject` und `scenario`.
 
 ```{r}
 coef(model.attitude.re.slope)
@@ -199,5 +203,5 @@ bibliography()
 ```
 
 # Lizenz
-Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz.
+Dieses Werk ist lizenziert unter einer CC-BY-NC-SA Lizenz. Diese Datei darf als Beispiel weiterverwendet werden. 
 
