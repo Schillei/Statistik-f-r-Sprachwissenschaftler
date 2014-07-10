@@ -44,20 +44,21 @@ priming$item <- as.factor(priming$item)
 ```
 
 ## Darstellung der Daten ohne Berücksichtigung der Wiederholungen
+DENSITY
 ```{r}
-ggplot(data=priming) + geom_density(aes(x=RT,color=cond,fill=cond),alpha=0.3)
+ggplot(data=priming) + geom_density(aes(x=RT, color=cond, fill=cond), alpha=0.5) 
 ```
-
+JITTER
 ```{r}
-ggplot(data=priming) + geom_jitter(aes(x=cond,y=RT,color=cond,fill=cond),alpha=0.5)
+ggplot(data=priming) + geom_jitter(aes(x=cond, y=RT, color=cond, fill=cond), alpha=0.5)
 ```
-
+VIOLIN
 ```{r}
-ggplot(data=priming) + geom_violin(aes(x=cond,y=RT,color=cond,fill=cond),alpha=0.5)
+ggplot(data=priming) + geom_violin(aes(x=cond, y=RT, color=cond, fill=cond), alpha=0.7)
 ```
-
+BOXPLOT
 ```{r}
-ggplot(data=priming) + geom_boxplot(aes(x=cond,y=RT,color=cond,fill=cond),alpha=0.5)
+ggplot(data=priming) + geom_boxplot(aes(x=cond, y=RT, color=cond, fill=cond), alpha=0.5)
 ```
 
 ## Darstellung der Daten mit Berücksichtigung der Wiederholungen
@@ -66,39 +67,40 @@ Wenn wir naiv die Wiederholungen betrachten, können wir uns entweder auf den zu
 ### By Subject
 Bei "Subject" berechnen wir die Mittelwerte aller Trials innerhalb einer Versuchsperson, d.h. wir nehmen den versuchpersonenweise Mittelwert über Items hinweg. Dafür können wir `aggregate()` nutzen.
 ```{r}
-priming.by.subject <- aggregate(RT ~ cond * subj,data=priming,FUN = mean)
+priming.by.subject <- aggregate(RT ~ cond*subj, data=priming, FUN=mean)
 ```
 
 Wir können die Tabelle, die durch entsteht, mit `xtable()` schön drucken. Bemerken Sie dabei, dass wir eine weitere Option (`results='asis'`) beim Code-Block setzen müssen!
 ```{r, results='asis'}
-print(xtable(priming.by.subject),type="html",include.rownames=FALSE)
+print(xtable(priming.by.subject), type = "html", include.rownames=FALSE)
 ```
 
 Diese Tabelle ist etwas "lang" (ist ja in long format!). Wie könnten sie auch breiter machen mit der Funktion `dcast()` (`cast` für Data Frames) aus dem Paket `reshape2`. 
 
 Mit Versuchspersonen als Zeilen und Bedingungen als Spalten:
 ```{r, results='asis'}
-priming.by.subject.wide1 <- dcast(priming.by.subject,subj ~ cond, value.var="RT")
-print(xtable(priming.by.subject.wide1),type="html",include.rownames=FALSE)
+priming.by.subject.wide1 <- dcast(data=priming.by.subject, subj ~ cond, value.var="RT")
+print(xtable(priming.by.subject.wide1))
 ```
  
 Mit Bedingungen als Zeilen und Versuchspersonen als Spalten:
 ```{r, results='asis'}
-priming.by.subject.wide2 <- dcast(priming.by.subject,cond ~ subj, value.var="RT")
-print(xtable(priming.by.subject.wide2),type="html",include.rownames=FALSE)
+priming.by.subject.wide2 <- dcast(data=priming.by.subject, cond ~ subj, value.var="RT")
+print(xtable(priming.by.subject.wide2), type = "html", include.rownames=FALSE)
 ```
 
 Welches Format macht am meisten Sinn?
 
 Natürlich müssen wir auch die Daten grafisch darstellen:
 ```{r}
-ggplot(data=priming.by.subject) + geom_density(aes(x=RT,color=cond,fill=cond),alpha=0.3)
-ggplot(data=priming.by.subject) + geom_jitter(aes(x=cond,y=RT,color=cond,fill=cond),alpha=0.5)
-ggplot(data=priming.by.subject) + geom_violin(aes(x=cond,y=RT,color=cond,fill=cond),alpha=0.5)
-ggplot(data=priming.by.subject) + geom_boxplot(aes(x=cond,y=RT,color=cond,fill=cond),alpha=0.5)
+ggplot(data=priming.by.subject) + geom_density(aes(x=RT, color=cond, fill=cond), alpha=0.5)
+ggplot(data=priming.by.subject) + geom_jitter(aes(x=cond, y=RT, color=cond, fill=cond), alpha=0.5)
+ggplot(data=priming.by.subject) + geom_violin(aes(x=cond, y=RT, color=cond, fill=cond), alpha=0.5)
+ggplot(data=priming.by.subject) + geom_boxplot(aes(x=cond, y=RT, color=cond, fill=cond), alpha=0.5)
 ```
 
 Sind alle Plots gleich gut?
+ANTWORT: 
 
 ### By Item
 Bei "Item" berechnen wir die Mittelwerte aller Trials innerhalb eines Items, d.h. wir nehmen den itemweise Mittelwert über Versuchpersonen hinweg. Dafür können wir `aggregate()` nutzen.
@@ -120,22 +122,18 @@ Sehen die Daten by Subject und by Item gleich aus? Wie sehen sie im Vergleich zu
 # Subject- und Item-Analysen
 
 ## Subject-Analyse
+DATEN DER EINZELNEN SUBJECTS PLOTTEN
 ```{r}
-ggplot(data=priming) + geom_density(aes(x=RT,color=cond,fill=cond),alpha=0.1) + facet_wrap(~subj)
+ggplot(data=priming) 
 ```
 
 ```{r}
-priming.f1 <- ezANOVA(priming
-                      , dv=.(RT)
-                      , wid=.(subj)
-                      , within=.(prime,target)
-                      , detailed=TRUE
-                      )
+priming.f1 <- ezANOVA(CODE)
 ```
 
 ### ANOVA
 ```{r, results='asis'}
-print(xtable(priming.f1$ANOVA),type="html",include.rownames=FALSE)
+ANOVA IM XTABLE 
 ```
 
 Leider sehen die Zahlen weniger als optimal aus -- es gibt Kommastellen bei Ganzzahlen und keine nicht-Null-Stellen bei manchen kleinen Kommazahlen. Dafür gibt es auch Optionen für `xtable`: `digits` (Stellen) und `display` (Darstellungsart)
@@ -159,7 +157,7 @@ Die jeweiligen Faktoren haben alle zwei Stufen, also weniger als drei -- Spheriz
 
 ## Item-Analyse
 ```{r}
-ggplot(data=priming) + geom_density(aes(x=RT,color=cond,fill=cond),alpha=0.1) + facet_wrap(~item)
+DATEN FÜR ALLE SUBJECTS EINZELN PLOTTEN
 ```
 Führen Sie die entsprechende Item-Analyse aus.
 
